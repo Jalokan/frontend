@@ -2,13 +2,21 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Frontend v1.0</title>
+    <title>Frontend v2.0</title>
 </head>
 <body>
-    <h1>Frontend v1.0</h1>
+    <h1>Frontend v2.0</h1>
+
+    <h2>Отправка данных</h2>
     <input type="text" id="inputText" placeholder="Введите текст">
     <button onclick="sendData()">Отправить</button>
     <p id="result"></p>
+
+    <hr>
+
+    <h2>Просмотр данных</h2>
+    <button onclick="readData()">Показать данные</button>
+    <textarea id="outputArea" rows="6" cols="50"></textarea>
 
     <script>
         async function sendData() {
@@ -20,6 +28,12 @@
             });
             const data = await response.json();
             document.getElementById('result').innerText = 'Ответ: ' + JSON.stringify(data);
+        }
+
+        async function readData() {
+            const response = await fetch('http://127.0.0.1:5000/read');
+            const data = await response.json();
+            document.getElementById('outputArea').value = data.content;
         }
     </script>
 </body>
