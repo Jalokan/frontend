@@ -7,6 +7,7 @@ const result = ref('')
 const filter = ref('')
 const output = ref('')
 
+
 async function sendData() {
   const response = await fetch(`${API_URL}/submit`, {
     method: 'POST',
